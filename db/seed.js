@@ -1,6 +1,6 @@
 const clients = require('./clients.json')
 
-const Client = require('../models/client');
+const Client = require('../models/Client');
 
 Client.deleteMany({})
     .then(() => {
