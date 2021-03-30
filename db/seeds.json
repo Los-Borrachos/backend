@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Bob Dylan",
+		"organization": "MusicLabelInc",
+        "email": "email@email.com",
+        "nextSteps": "Meeting next week",
+        "salesStage": "proposal",
+        "totalRevenue": 50000
+    },
+    {
+		"name": "Mike Scott",
+		"organization": "Dunder Mifflin",
+        "email": "greatScott@DM.com",
+        "nextSteps": "Meeting at Chillis",
+        "salesStage": "proposal",
+        "totalRevenue": 75000
+    },
+    {
+		"name": "Dwight Schrute",
+		"organization": "Schrute Farms",
+        "email": "BeetsBearsBattlestarGalactica@email.com",
+        "nextSteps": "B n B meeting ",
+        "salesStage": "second meeting",
+        "totalRevenue": 30000
+    }
+]
