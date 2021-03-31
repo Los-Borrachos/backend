@@ -10,6 +10,8 @@ const usersController = require('./controllers/Users')
 app.use("/users/", usersController)
 const clientsController = require('./controllers/Client')
 app.use("/clients/", clientsController)
+const prospectsController = require('./controllers/Prospect');
+app.use('/prospects/', prospectsController);
 
 const port = process.env.PORT || 5000
 
