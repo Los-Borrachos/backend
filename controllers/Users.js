@@ -9,7 +9,7 @@ router.post('/signup', (req, res, next) => {
 		.hash(req.body.password, 10)
 		.then((hashedPassword) => {
 			const newUser = {
-				email: req.body.email,
+				userName: req.body.userName,
 				password: hashedPassword,
 			};
 			return newUser;
@@ -24,7 +24,7 @@ router.post('/signup', (req, res, next) => {
 		.catch(next);
 });
 router.post('/signin', (req, res, next) => {
-	User.findOne({ email: req.body.email })
+	User.findOne({ userName: req.body.userName })
 		// Pass the user and the request to createUserToken
 		.then((user) => createUserToken(req, user))
 		// createUserToken will either throw an error that
@@ -34,7 +34,7 @@ router.post('/signin', (req, res, next) => {
 		.catch(next);
 });
 // Sign In Route
-router.post('/signin', (req, res, next) => {});
-module.exports = router;
+
+
 
 module.exports = router;
