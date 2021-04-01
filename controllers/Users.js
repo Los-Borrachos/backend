@@ -1,8 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
 const { createUserToken } = require('../middleware/auth');
 const User = require('../models/User');
+const {
+	handleValidateId,
+	handleRecordExists,
+} = require('../middleware/custom_errors');
+const router = express.Router();
 // Sign Up Route
 router.post('/signup', (req, res, next) => {
 	bcrypt
@@ -30,11 +34,61 @@ router.post('/signin', (req, res, next) => {
 		// createUserToken will either throw an error that
 		// will be caught by our error handler or send back
 		// a token that we'll in turn send to the client.
-		.then((token) => res.json({ token }))
+		.then((token) => {
+			 json({ token })
+ 
+		
+		})
 		.catch(next);
 });
-// Sign In Route
 
+// GET api/jobs
+router.get('/', (req, res, next) => {
+  // Use our Job model to find all of the documents
+  // in the jobs collection
+  // Then send all of the jobs back as json
+  User.find()
+    .then((users) => res.json(users))
+    .catch(next);
+});
+//show one
+router.get('/:id', handleValidateId, (req, res, next) => {
+	User.findById(req.params.id)
+	.then(handleRecordExists)
+		.then((record) => {
+			
+				res.json(record);
+			
+		})
+		.catch(next);
+});
+// update login 
+router.put('/:id', handleValidateId,(req, res, next) => {
+	User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+		new: true,
+	})
+		.then(handleRecordExists)
+		.then((record) => {
+			
+				res.json(record);
+			
+		})
+		.catch(next);f
+});
+
+// delete a user 
+router.delete('/:id',handleValidateId, (req, res) => {
+	User.findOneAndDelete({
+		_id: req.params.id,
+	})
+	.then(handleRecordExists)
+	.then((record) => {
+		
+			res.sendStatus(204);
+		
+	})
+	.catch(next)
+});
 
 
 module.exports = router;
