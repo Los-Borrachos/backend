@@ -35,8 +35,7 @@ router.post('/signin', (req, res, next) => {
 		// will be caught by our error handler or send back
 		// a token that we'll in turn send to the client.
 		.then((token) => {
-			 json({ token })
- 
+			 res.json({ token })
 		
 		})
 		.catch(next);
@@ -73,7 +72,7 @@ router.put('/:id', handleValidateId,(req, res, next) => {
 				res.json(record);
 			
 		})
-		.catch(next);f
+		.catch(next);
 });
 
 // delete a user 
