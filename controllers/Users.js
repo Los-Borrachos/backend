@@ -33,8 +33,58 @@ router.post('/signin', (req, res, next) => {
 		.then((token) => res.json({ token }))
 		.catch(next);
 });
-// Sign In Route
 
+// GET api/jobs
+router.get('/', (req, res, next) => {
+  // Use our Job model to find all of the documents
+  // in the jobs collection
+  // Then send all of the jobs back as json
+  User.find()
+    .then((users) => res.json(users))
+    .catch(next);
+});
+//show one
+router.get('/:id', (req, res, next) => {
+	User.findById(req.params.id)
+		.then((record) => {
+			if (!record) {
+				res.sendStatus(404);
+			} else {
+				res.json(record);
+			}
+		})
+		.catch(next);
+});
+// update login 
+router.put('/:id', (req, res, next) => {
+	User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+		new: true,
+	})
+		.then((record) => {
+			if (!record) {
+				res.sendStatus(404);
+			} else {
+				res.json(record);
+			}
+		})
+		.catch(next);
+});
+
+// delete a user 
+router.delete('/:id', (req, res) => {
+	User.findOneAndDelete({
+		_id: req.params.id,
+	}).then((record) => {
+		// If we didn't get a job back from the query
+		if (!record) {
+			// send a 404
+			res.sendStatus(404);
+		} else {
+			// otherwise, send back 204 No Content
+			res.sendStatus(204);
+		}
+	});
+});
 
 
 module.exports = router;
