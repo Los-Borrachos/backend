@@ -10,9 +10,11 @@ router.get('/', (req, res) => {
 });
 // Grab by id
 router.get('/:id', (req, res) => {
-	Client.findById({ _id: req.params.id }).then((record) => {
-		res.json(record);
-	});
+	Client.findById({ _id: req.params.id })
+		.populate('owner', 'userName')
+		.then((record) => {
+			res.json(record);
+		});
 });
 // post new client record
 router.post('/', (req, res) => {

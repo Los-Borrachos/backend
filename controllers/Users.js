@@ -1,8 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
 const { createUserToken } = require('../middleware/auth');
 const User = require('../models/User');
+const {
+	handleValidateId,
+	handleRecordExists,
+} = require('../middleware/custom_errors');
+const router = express.Router();
 // Sign Up Route
 router.post('/signup', (req, res, next) => {
 	bcrypt
@@ -30,7 +34,11 @@ router.post('/signin', (req, res, next) => {
 		// createUserToken will either throw an error that
 		// will be caught by our error handler or send back
 		// a token that we'll in turn send to the client.
-		.then((token) => res.json({ token }))
+		.then((token) => {
+			 json({ token })
+ 
+		
+		})
 		.catch(next);
 });
 
@@ -44,46 +52,42 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 //show one
-router.get('/:id', (req, res, next) => {
+router.get('/:id', handleValidateId, (req, res, next) => {
 	User.findById(req.params.id)
+	.then(handleRecordExists)
 		.then((record) => {
-			if (!record) {
-				res.sendStatus(404);
-			} else {
+			
 				res.json(record);
-			}
+			
 		})
 		.catch(next);
 });
 // update login 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', handleValidateId,(req, res, next) => {
 	User.findOneAndUpdate({ _id: req.params.id }, req.body, {
 		new: true,
 	})
+		.then(handleRecordExists)
 		.then((record) => {
-			if (!record) {
-				res.sendStatus(404);
-			} else {
+			
 				res.json(record);
-			}
+			
 		})
-		.catch(next);
+		.catch(next);f
 });
 
 // delete a user 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',handleValidateId, (req, res) => {
 	User.findOneAndDelete({
 		_id: req.params.id,
-	}).then((record) => {
-		// If we didn't get a job back from the query
-		if (!record) {
-			// send a 404
-			res.sendStatus(404);
-		} else {
-			// otherwise, send back 204 No Content
+	})
+	.then(handleRecordExists)
+	.then((record) => {
+		
 			res.sendStatus(204);
-		}
-	});
+		
+	})
+	.catch(next)
 });
 
 

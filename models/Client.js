@@ -3,10 +3,14 @@ const ClientSchema = new mongoose.Schema({
 	name: String,
 	organization: String,
 	email: String,
-    nextSteps: String,
-    salesStage: String,
-    totalRevenue: Number
-    
+	nextSteps: String,
+	salesStage: String,
+	totalRevenue: Number,
+	owner: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: false,
+	},
 });
 const Client = mongoose.model('Client', ClientSchema);
 module.exports = Client;
