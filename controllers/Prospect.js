@@ -14,7 +14,17 @@ router.get('/:id', (req, res) => {
 		res.json(record);
 	});
 });
-// post new client record
+
+//UPDATE 
+router.put('/:id', (req, res, next) => {
+	const id = req.params.id;
+	const updatedProspect = req.body;
+	Prospect.findByIdAndUpdate(id, updatedProspect, { new: true}).then((updateProspect) => {
+		res.json(updateProspect);
+	})
+})
+
+// post new prospect record
 router.post('/', (req, res) => {
 	Prospect.create(req.body).then((record) => {
 		res.json(record);
