@@ -1,5 +1,5 @@
 const express = require('express');
-const Prospect = require('../models/Prospects');
+const Prospect = require('../models/Prospect');
 
 const router = express.Router();
 // Grabs and sends all records
