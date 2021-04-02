@@ -77,7 +77,7 @@ const createUserToken = (req, user) => {
 		!bcrypt.compareSync(req.body.password, user.password)
 	) {
 		const err = new Error('The provided username or password is incorrect');
-		err.statusCode = 422;
+		err.statusCode = 401;
 		throw err;
 	}
 	// If no error was thrown, we create the token from user's id and

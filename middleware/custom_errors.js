@@ -38,19 +38,19 @@ class BadCredentialsError extends Error {
 	constructor() {
 		super();
 		this.name = 'BadCredentialsError';
-		this.statusCode = 422;
-		this.message = 'The provided username or password is incorrect';
+		this.statusCode = 401;
+		this.message = 'The provided username or password is  wrong ';
 	}
 }
 
-class InvalidIdError extends Error {
-	constructor() {
-		super();
-		this.name = 'InvalidIdError';
-		this.statusCode = 422;
-		this.message = 'Invalid id';
-	}
-}
+// class InvalidIdError extends Error {
+// 	constructor() {
+// 		super();
+// 		this.name = 'InvalidIdError';
+// 		this.statusCode = 422;
+// 		this.message = 'Invalid id';
+// 	}
+// }
 const handleValidateOwnership = (requestObject, resource) => {
 	if (!requestObject.user._id.equals(resource.owner)) {
 		throw new OwnershipError();
