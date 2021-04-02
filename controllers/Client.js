@@ -16,12 +16,23 @@ router.get('/:id', (req, res) => {
 			res.json(record);
 		});
 });
+
+//UPDATE 
+router.put('/:id', (req, res, next) => {
+	const id = req.params.id;
+	const updatedClient = req.body;
+	Client.findByIdAndUpdate(id, updatedClient, { new: true}).then((updateClient) => {
+		res.json(updateClient);
+	})
+})
+
 // post new client record
 router.post('/', (req, res) => {
 	Client.create(req.body).then((record) => {
 		res.json(record);
 	});
 });
+
 // delete by id
 router.delete('/:id', (req, res) => {
 	Client.findByIdAndDelete({ _id: req.params.id }).then((delRecord) => {
