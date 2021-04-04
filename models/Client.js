@@ -7,7 +7,8 @@ const ClientSchema = new mongoose.Schema({
 	nextSteps: String,
 	salesStage: String,
 	totalRevenue: Number,
-	
+	image: String,
+
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',

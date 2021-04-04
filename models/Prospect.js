@@ -7,6 +7,7 @@ const ProspectSchema = new mongoose.Schema({
 	nextSteps: String,
 	salesStage: String,
 	totalRevenue: Number,
+	image: String,
 });
 const Prospect = mongoose.model('Prospect', ProspectSchema);
 module.exports = Prospect;
