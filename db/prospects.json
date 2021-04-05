@@ -2,25 +2,28 @@
 	{
 		"name": "Clark Kent",
 		"organization": "Super Inc",
-        "email": "CK@mail.com",
-        "nextSteps": "Meeting next week",
-        "salesStage": "proposal",
-        "totalRevenue": 50000
-    },
-    {
+		"email": "CK@mail.com",
+		"phoneNumber": "555-555-5555",
+		"nextSteps": "Meeting next week",
+		"salesStage": "proposal",
+		"totalRevenue": 50000
+	},
+	{
 		"name": "Indiana Jones",
 		"organization": "USA",
-        "email": "indi@US.com",
-        "nextSteps": "Meeting at Chillis",
-        "salesStage": "proposal",
-        "totalRevenue": 75000
-    },
-    {
+		"email": "indi@US.com",
+		"phoneNumber": "555-555-5555",
+		"nextSteps": "Meeting at Chillis",
+		"salesStage": "proposal",
+		"totalRevenue": 75000
+	},
+	{
 		"name": "Darth Vader",
 		"organization": "Death Star",
-        "email": "TheDarkSide@force.com",
-        "nextSteps": "B n B meeting ",
-        "salesStage": "second meeting",
-        "totalRevenue": 30000
-    }
+		"email": "TheDarkSide@force.com",
+		"phoneNumber": "555-555-5555",
+		"nextSteps": "B n B meeting ",
+		"salesStage": "second meeting",
+		"totalRevenue": 30000
+	}
 ]

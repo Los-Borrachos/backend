@@ -1,10 +1,7 @@
-// Require Mongoose so we can use it later in our handlers
+
 const mongoose = require('mongoose');
 
-// Create some custom error types by extending the Javascript
-// `Error.prototype` using the ES6 class syntax.  This  allows
-// us to add arbitrary data for our status code to the error
-// and dictate the name and message.
+
 
 class OwnershipError extends Error {
 	constructor() {
@@ -43,14 +40,7 @@ class BadCredentialsError extends Error {
 	}
 }
 
-// class InvalidIdError extends Error {
-// 	constructor() {
-// 		super();
-// 		this.name = 'InvalidIdError';
-// 		this.statusCode = 422;
-// 		this.message = 'Invalid id';
-// 	}
-// }
+
 const handleValidateOwnership = (requestObject, resource) => {
 	if (!requestObject.user._id.equals(resource.owner)) {
 		throw new OwnershipError();
@@ -78,23 +68,18 @@ const handleValidationErrors = (err, req, res, next) => {
 	if (err.name.match(/Valid/) || err.name === 'MongoError') {
 		throw new BadParamsError();
 	} else {
-		// This is the error-handling middleware will be called after
-		// all controllers run, so we need to make sure that we pass
-		// all of the errors up to this point on to the next
-		// error handler in the chain!
+	
 		next(err);
 	}
 };
 
-// This is our generic handler that will be the last in our middleware chain:
+
 const handleErrors = (err, req, res, next) => {
-	// If the error contains a statusCode, set the variable to
-	// that code and if not, set it to a default 500 code
+	
 	const statusCode = err.statusCode || 500;
-	// If the error contains a message, set the variable to that
-	// message and if not, set it to a generic 'Internal Server Error'
+	
 	const message = err.message || 'Internal Server Error';
-	// Set the status and send the message as a response to the client
+	
 	res.status(statusCode).send(message);
 };
 
