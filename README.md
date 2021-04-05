@@ -2,9 +2,13 @@
 The backend uses MongoDB for the database  and express for middleware, written in javaScript. Postman was used to test the CRUD operations/routes.
 ## Features
 Full CRUD, create, destroy, edit, and view of the clients, prospects, and users.
+
 User login feature using bcrypt to hash their passwords and issue user tokens. 
+
 Tokens are stored in the front end in order to allow users to log in and use site features ( stored in the browsers local storage)
+
 Three Database schemas were used to define the Client, prospects, and users record in the database
+
 Each of these schemas were given controllers that defined their routes for the crud operations to be perfomed when requested from the front end.  A seed file was created in order to have some test data to use for development.
 
 ## Future goals/improvements 
